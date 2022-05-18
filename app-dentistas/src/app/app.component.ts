@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
+  // template: `
+  //   <span>{{ title }} is running! </span>
+  //   <span>Developed by {{developer}} in {{year}}</span>
+  // `,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
