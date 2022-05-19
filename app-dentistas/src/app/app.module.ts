@@ -1,16 +1,15 @@
+import { AerolineaModule } from './aerolinea/aerolinea.module';
+import { SharedModule } from './shared/shared.module';
 import { UtileriasModule } from './utilerias/utilerias.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { ComponentOne } from './app.component';
 import { Ejemplo } from './app.ejemplo';
 import { Counter } from './app.counter';
 import { InfoPersonaComponent } from './info-persona/info-persona.component';
 import { MatematicoComponent } from './matematico/matematico.component';
-import { SortPipe } from './sort.pipe';
-import { CopyrightDirective } from './copyright.directive';
-import { NumericDirective } from './numeric.directive';
-import { PermissionDirective } from './permission.directive';
 
 @NgModule({
   declarations: [
@@ -18,15 +17,14 @@ import { PermissionDirective } from './permission.directive';
     Ejemplo,
     Counter,
     InfoPersonaComponent,
-    MatematicoComponent,
-    SortPipe,
-    CopyrightDirective,
-    NumericDirective,
-    PermissionDirective
+    MatematicoComponent
   ],
   imports: [
     BrowserModule,
-    UtileriasModule
+    UtileriasModule,
+    SharedModule,
+    FormsModule,
+    AerolineaModule
   ],
   providers: [],
   bootstrap: [ComponentOne]

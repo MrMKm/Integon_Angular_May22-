@@ -1,7 +1,8 @@
-import { SortPipe } from './sort.pipe';
-import { Person } from './person';
-import { PermissionDirective } from './permission.directive';
-import { Component } from '@angular/core';
+import { Vuelos } from './aerolinea/vuelos/vuelos.vuelo';
+import { PersonasService } from './personas.service';
+import { SortPipe } from './shared/sort.pipe';
+import { PermissionDirective } from './shared/permission.directive';
+import { Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -30,6 +31,9 @@ import { Component } from '@angular/core';
       </tbody>
     </table>
 
+    Dato: <input type="text" id="txtDato" [(ngModel)]="dato"/>
+    {{dato}}
+
     <p appCopyright></p>
 
     <input type="text" appNumeric/>
@@ -39,22 +43,33 @@ import { Component } from '@angular/core';
     </div>
 
     <app-demo-utilerias></app-demo-utilerias>
+
+    <app-vuelos></app-vuelos>
   `,
   //templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
+  providers: [PersonasService]
 })
-export class ComponentOne {
+export class ComponentOne implements OnInit {
   title = 'app-dentistas';
   public developer = 'Ricardo Orozco';
   public version = 'v1';
   public year = '2022'; 
+  public personas = [];
+  public dato:string = "";
 
-  personas: Person[] = [
-    { ID: 1, nombre: 'Ricardo', apellido: 'Orozco', ciudad: 'Guadalajara', moneda: 1000},
-    { ID: 2, nombre: 'Jair', apellido: 'Alvarez', ciudad: 'Zapopan', moneda: 2000},
-    { ID: 3, nombre: 'Orozco', apellido: 'Ruiz', ciudad: 'Tijuana', moneda: 2000},
-    { ID: 4, nombre: 'Alvarez', apellido: 'Alarcon', ciudad: 'Sahuayo', moneda: 2000}
-    ];
+  // personas: Person[] = [
+  //   { ID: 1, nombre: 'Ricardo', apellido: 'Orozco', ciudad: 'Guadalajara', moneda: 1000},
+  //   { ID: 2, nombre: 'Jair', apellido: 'Alvarez', ciudad: 'Zapopan', moneda: 2000},
+  //   { ID: 3, nombre: 'Orozco', apellido: 'Ruiz', ciudad: 'Tijuana', moneda: 2000},
+  //   { ID: 4, nombre: 'Alvarez', apellido: 'Alarcon', ciudad: 'Sahuayo', moneda: 2000}
+  //   ];
+
+  constructor(private personasService:PersonasService) {}
+
+  ngOnInit(){
+    this.personas = this.personasService.getPersonas();
+  }
 
   onClick() {
     window.alert(`Button pressed`);

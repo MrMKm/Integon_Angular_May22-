@@ -1,4 +1,4 @@
-import { Person } from './person';
+import { Person } from './../person';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
