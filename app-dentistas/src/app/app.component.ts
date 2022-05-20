@@ -8,46 +8,49 @@ import { Person } from './person';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-counter></app-counter>
-    <app-info-persona [nombre]="'Ricardo Jair'" [apellido]="'Orozco Alvarez'"></app-info-persona>
-    <app-matematico [x]="10" [y]="10" [operacion]="'*'" (calculate)="onClick()"></app-matematico>
+  // template: `
+  //   <router-outlet></router-outlet>
 
-    <table>
-      <thead>
-        <th>Index</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Ciudad</th>
-        <th>Moneda</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let persona of personas | sort:'ciudad':false">
-          <td>{{persona.id}}</td>
-          <td>{{persona.nombre}}</td>
-          <td>{{persona.apellido}}</td>
-          <td>{{persona.ciudad}}</td>
-          <td>{{persona.moneda | currency}}</td>
-        </tr>
-      </tbody>
-    </table>
+  //   <app-counter></app-counter>
+  //   <app-info-persona [nombre]="'Ricardo Jair'" [apellido]="'Orozco Alvarez'"></app-info-persona>
+  //   <app-matematico [x]="10" [y]="10" [operacion]="'*'" (calculate)="onClick()"></app-matematico>
 
-    Dato: <input type="text" id="txtDato" [(ngModel)]="dato"/>
-    {{dato}}
+    // <table>
+    //   <thead>
+    //     <th>Index</th>
+    //     <th>Nombre</th>
+    //     <th>Apellido</th>
+    //     <th>Ciudad</th>
+    //     <th>Moneda</th>
+    //   </thead>
+    //   <tbody>
+    //     <tr *ngFor="let persona of personas | sort:'ciudad':false">
+    //       <td>{{persona.id}}</td>
+    //       <td>{{persona.nombre}}</td>
+    //       <td>{{persona.apellido}}</td>
+    //       <td>{{persona.ciudad}}</td>
+    //       <td>{{persona.moneda | currency}}</td>
+    //     </tr>
+    //   </tbody>
+    // </table>
 
-    <p appCopyright></p>
+  //   Dato: <input type="text" id="txtDato" [(ngModel)]="dato"/>
+  //   {{dato}}
 
-    <input type="text" appNumeric/>
+  //   <p appCopyright></p>
 
-    <div *appPermission="['admin', 'agent']">
-      <p>Only for Admins and Agents</p>
-    </div>
+  //   <input type="text" appNumeric/>
 
-    <app-demo-utilerias></app-demo-utilerias>
+  //   <div *appPermission="['admin', 'agent']">
+  //     <p>Only for Admins and Agents</p>
+  //   </div>
 
-    <app-vuelos></app-vuelos>
-  `,
-  //templateUrl: './app.component.html',
+  //   <app-demo-utilerias></app-demo-utilerias>
+
+  //   <app-vuelos></app-vuelos>
+  // `,
+  
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
   providers: [PersonasService]
 })
