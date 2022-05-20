@@ -3,6 +3,7 @@ import { PersonasService } from './personas.service';
 import { SortPipe } from './shared/sort.pipe';
 import { PermissionDirective } from './shared/permission.directive';
 import { Component, OnInit} from '@angular/core';
+import { Person } from './person';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { Component, OnInit} from '@angular/core';
       </thead>
       <tbody>
         <tr *ngFor="let persona of personas | sort:'ciudad':false">
-          <td>{{persona.ID}}</td>
+          <td>{{persona.id}}</td>
           <td>{{persona.nombre}}</td>
           <td>{{persona.apellido}}</td>
           <td>{{persona.ciudad}}</td>
@@ -55,7 +56,7 @@ export class ComponentOne implements OnInit {
   public developer = 'Ricardo Orozco';
   public version = 'v1';
   public year = '2022'; 
-  public personas = [];
+  public personas:Person[] = [];
   public dato:string = "";
 
   // personas: Person[] = [
@@ -68,7 +69,17 @@ export class ComponentOne implements OnInit {
   constructor(private personasService:PersonasService) {}
 
   ngOnInit(){
-    this.personas = this.personasService.getPersonas();
+    //this.personas = this.personasService.getPersonas();
+
+    // this.personasService.getPersonas().subscribe({
+    //   next: data => {
+    //     this.personas = data.personas;
+    //   }
+    // });
+
+    this.personasService.getPersonas().subscribe(data => {
+      this.personas = data;
+    });
   }
 
   onClick() {

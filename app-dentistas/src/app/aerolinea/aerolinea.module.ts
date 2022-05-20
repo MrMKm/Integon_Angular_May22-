@@ -1,9 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VuelosComponent } from './vuelos/vuelos.component';
-
-
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { VuelosComponent } from './vuelos/vuelos.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     VuelosComponent

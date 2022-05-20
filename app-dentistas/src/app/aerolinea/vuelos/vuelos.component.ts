@@ -75,7 +75,9 @@ export class VuelosComponent implements OnInit {
   constructor(private vueloService:VueloService) { }
 
   ngOnInit(){
-    this.vuelos = this.vueloService.getVuelos();
+    //this.vuelos = this.vueloService.getVuelos();
+
+    this.getVuelos();
   }
 
   setVuelo() {
@@ -86,8 +88,20 @@ export class VuelosComponent implements OnInit {
       origen: this.origen, 
       destino: this.destino
     };
+    
+    this.vueloService.setVuelo(this.vuelo).subscribe(data => {
+      this.vuelos.push(data);
+    });
 
-    this.vuelos = this.vueloService.setVuelo(this.vuelo);
+    this.getVuelos();
+
+    //this.vuelos = this.vueloService.setVuelo(this.vuelo);
+  }
+
+  getVuelos() {
+    this.vueloService.getVuelos().subscribe(data => {
+      this.vuelos = data;
+    });
   }
 
 }

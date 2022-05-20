@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { AerolineaModule } from './aerolinea/aerolinea.module';
 import { SharedModule } from './shared/shared.module';
 import { UtileriasModule } from './utilerias/utilerias.module';
@@ -24,7 +25,8 @@ import { MatematicoComponent } from './matematico/matematico.component';
     UtileriasModule,
     SharedModule,
     FormsModule,
-    AerolineaModule
+    AerolineaModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [ComponentOne]
