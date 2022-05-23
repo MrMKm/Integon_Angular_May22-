@@ -13,7 +13,7 @@ app.use(cors({
 
 const url = "mongodb://localhost:27017";
 
-let db, personas, vuelos
+let db, personas, vuelos, users
 mongo.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -27,6 +27,7 @@ mongo.connect(url, {
     console.log("Conectado a la DB");
     personas = db.collection("personas");
     vuelos = db.collection("vuelos");
+    users = db.collection("adminpro-users");
 });
 
 
@@ -102,6 +103,40 @@ app.post("/vuelos", (request, response) => {
             horario : request.body.horario,
             origen : request.body.origen,
             destino: request.body.destino
+        },
+        (err, result) => {
+            if(err){
+                console.log(err);
+                response.status(500).json({err:err});
+                return;
+            }
+            response.status(200).json({ok:true});
+        }
+    );
+});
+
+app.get("/users", (request, response) => {
+    console.log("Admin Pro Users");
+    users.find().toArray((err,items)=>{
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+
+        //response.status(200).json({vuelos:items});
+        response.status(200).json(items);
+    });
+});
+
+app.post("/users", (request, response) => {
+    console.log("Insert Admin Pro User");
+    users.insertOne(
+        {
+            id : request.body.id,
+            name : request.body.name,
+            email : request.body.email,
+            password : request.body.password,
         },
         (err, result) => {
             if(err){
