@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<User[]>('http://localhost:3006/users')
   }
 
+  getUserByID(id:number):Observable<User> {
+    return this.http.get<User>(`http://localhost:3006/user/${id}`);
+  }
+
   setUsers(user:User):Observable<User> {
     return this.http.post<User>('http://localhost:3006/users', user);
   }

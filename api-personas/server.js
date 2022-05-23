@@ -129,6 +129,21 @@ app.get("/users", (request, response) => {
     });
 });
 
+app.get("/user/:id", (request, response) => {
+    console.log("Admin Pro User");
+    let userID = request.params.id;
+    personas.findOne({id:(userID)}, function(err,alumno) {
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+
+        //response.status(200).json({persona:persona});
+        response.status(200).json(items);
+    });
+});
+
 app.post("/users", (request, response) => {
     console.log("Insert Admin Pro User");
     users.insertOne(

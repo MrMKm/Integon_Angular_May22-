@@ -9,44 +9,49 @@ import { Component, OnInit } from '@angular/core';
   providers: [UserService]
 })
 export class LregisterComponent implements OnInit {
-  constructor() { }
+  // constructor() { }
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  // }
+
+  public users:User[] = [];
+  public user:User;
+  public passwordConfirm:string;
+
+  constructor(private userService:UserService) { }
+
+  ngOnInit(){
+    this.getUsers();
   }
 
-  // public users:User[] = [];
-  // public user:User;
+  setUsers() {
+    this.passwordConfirm = (<HTMLInputElement>document.getElementById("UserPassword2")).value;
 
-  // public id:string;
-  // public name:string;
-  // public email:string;
-  // public password:string;
+    this.user = {
+      id: this.users.length + 1,
+      name: (<HTMLInputElement>document.getElementById("UserName")).value,
+      email: (<HTMLInputElement>document.getElementById("UserEmail")).value,
+      password: (<HTMLInputElement>document.getElementById("UserPassword")).value,
+    };
 
-  // constructor(private userService:UserService) { }
+    if(this.passwordConfirm === this.user.password)
+    {
+      this.userService.setUsers(this.user).subscribe(data => {
+        this.users.push(data);
+      });
 
-  // ngOnInit(){
-  //   this.getUsers();
-  // }
+      this.getUsers();
+    }
 
-  // setUsers() {
-  //   this.user = {
-  //     id: this.id,
-  //     name: this.name,
-  //     email: this.email,
-  //     password: this.password
-  //   };
+    else
+      alert('Passwords are not equals');
 
-  //   this.userService.setUsers(this.user).subscribe(data => {
-  //     this.users.push(data);
-  //   });
+  }
 
-  //   this.getUsers();
-  // }
-
-  // getUsers() {
-  //   this.userService.getUsers().subscribe(data => {
-  //     this.users = data;
-  //   });
-  // }
+  getUsers() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
+  }
 
 }
